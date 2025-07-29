@@ -92,7 +92,8 @@
   </div>
 
   <div class="search-bar">
-    <input type="text" id="searchInput" onchange="debounce(this.value)" placeholder="Search for products...">
+    <!-- <input type="text" id="searchInput" placeholder="Search for products..."> -->
+     <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
     <button onclick="filterProducts()">Search</button>
   </div>
 
@@ -147,14 +148,7 @@
     // Initial Load
     displayProducts(products);
   </script> -->
-
-  <script>
-
-
-    function debounce(query){
-        searchProducts(query);
-    }
-
+<script>
   let allProducts = [];
 
   async function fetchProducts() {
@@ -187,6 +181,11 @@
 
   function displayProducts(productArray) {
     const container = document.getElementById('productList');
+    if (!container) {
+      console.error("Element with id 'productList' not found");
+      return;
+    }
+    
     container.innerHTML = '';
     productArray.forEach(product => {
       const div = document.createElement('div');
@@ -201,20 +200,33 @@
   }
 
   function filterProducts() {
-    const search = document.getElementById('searchInput').value.toLowerCase();
-    const filtered = allProducts.filter(p => p.name.toLowerCase().includes(search));
+    const searchInput = document.getElementById('searchInput');
+    if (!searchInput) {
+      console.error("Element with id 'searchInput' not found");
+      return;
+    }
+    
+    const search = searchInput.value.toLowerCase();
+    const filtered = allProducts.filter(p => 
+      p.name.toLowerCase().includes(search)
+    );
     displayProducts(filtered);
   }
 
   function filterCategory(category) {
-    if (category === 'all') return displayProducts(allProducts);
+    if (category === 'all') {
+      displayProducts(allProducts);
+      return;
+    }
     const filtered = allProducts.filter(p => p.category === category);
     displayProducts(filtered);
   }
-  async function searchProducts(query) {
-     const query = `
-      query {
-        products(name: "${query}") {
+
+  // Fixed function with proper parameter name and GraphQL syntax
+  async function searchProducts(searchQuery) {
+    const query = `
+      query GetProductsByName($name: String!) {
+        products(where: { name_contains: $name }) {
           id
           name
           category
@@ -228,19 +240,24 @@
       const response = await fetch("http://localhost:4000/graphql", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify({ 
+          query,
+          variables: { name: searchQuery }
+        }),
       });
 
       const result = await response.json();
-      allProducts = result.data.products || [];
-      displayProducts(allProducts);
+      const searchResults = result.data.products || [];
+      displayProducts(searchResults);
     } catch (error) {
-      console.error("Error fetching products:", error);
-    }   
+      console.error("Error searching products:", error);
+    }
   }
+
   // Initial load
   fetchProducts();
 </script>
+
 
 
 </body>
