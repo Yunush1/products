@@ -7,9 +7,10 @@ import { Server } from 'socket.io';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import routes from './routes/paymentRoutes.js'
 import { addUser, loginUser } from './user.controller.js';
 // ✅ Express app
-let users = JSON.parse(fs.readFileSync('data.json'));
+let users = JSON.parse(fs.readFileSync('./.temp/data.json'));
 const app = express();
 app.use(cors({ origin: '*', credentials: true }));
 app.use(express.json());
@@ -21,8 +22,8 @@ const __dirname = path.dirname(__filename);
 // Serve static files (like CSS, JS, images)
 app.use(express.static(path.join(__dirname, 'public')));
 
-const data = JSON.parse(fs.readFileSync('product.json'))
-
+const data = JSON.parse(fs.readFileSync('./.temp/product.json'));
+app.use("/api", routes);
 try {
     // ✅ GraphQL Schema and Resolvers
     const schema = buildSchema(`
@@ -39,12 +40,22 @@ try {
         }
 
         type Product {
-            id: Int
-            name: String
-            category: String
-            image: String
-            price: String
+            id: Int!
+            name: String!
+            category: String!
+            price: String!
+            originalPrice: String
+            discount: String
+            offer: String
+            description: String!
+            images: [String!]!
+            rating: Float!
+            reviews: Int!
+            inStock: Boolean!
+            features: [String!]!
+            numericPrice: Float!
         }
+
         
         type Users {
             id:Int
@@ -124,7 +135,13 @@ io.on('connection', (socket) => {
 // ✅ Root route
 // Route to send HTML
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'products.html'));
+    res.sendFile(path.join(__dirname, 'public', 'products.html'));
+});
+app.get('/products', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'details.html'));
+});
+app.get("/products/payment", (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'checkout.html'));
 });
 
 // ✅ Start server
