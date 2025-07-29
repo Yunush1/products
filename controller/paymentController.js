@@ -192,7 +192,7 @@ class PaymentController {
                     refund: result.data
                 });
             } else {
-                res.status(500).json({
+                res.status(result.error.statusCode).json({
                     success: false,
                     error: result.error
                 });

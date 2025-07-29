@@ -61,7 +61,6 @@ class RazorpayService {
                 razorpay_order_id,
                 razorpay_signature
             } = paymentData;
-            console.log("verifyPaymentSignature", paymentData);
             if (!razorpay_payment_id || !razorpay_order_id || !razorpay_signature) {
                 return {
                     success: false,
@@ -71,12 +70,11 @@ class RazorpayService {
 
             const body = razorpay_order_id + '|' + razorpay_payment_id;
             const expectedSignature = crypto
-                .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET || 'your_razorpay_key_secret')
+                .createHmac('sha256', "YbZw0IsfvLizXHvNz7N1J0lx")
                 .update(body.toString())
                 .digest('hex');
 
             const isSignatureValid = expectedSignature === razorpay_signature;
-
             return {
                 success: isSignatureValid,
                 message: isSignatureValid ? 'Payment verified successfully' : 'Invalid payment signature'
@@ -161,7 +159,7 @@ class RazorpayService {
             console.error('Refund Creation Error:', error);
             return {
                 success: false,
-                error: error.message
+                error
             };
         }
     }
