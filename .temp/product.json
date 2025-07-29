@@ -1,0 +1,913 @@
+[
+  {
+    "id": 1,
+    "name": "iPhone 15 Pro",
+    "category": "electronics",
+    "price": "$999",
+    "originalPrice": "$1199",
+    "discount": "17%",
+    "offer": "Free AirPods with Purchase",
+    "description": "Latest iPhone with titanium design, A17 Pro chip, and advanced camera system. Features 256GB storage, ProRAW photography, and all-day battery life.",
+    "images": [
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.8,
+    "reviews": 1247,
+    "inStock": true,
+    "features": ["A17 Pro Chip", "Titanium Design", "ProRAW Camera", "5G Ready"]
+  },
+  {
+    "id": 2,
+    "name": "MacBook Pro 14\"",
+    "category": "electronics",
+    "price": "$1599",
+    "originalPrice": "$1999",
+    "discount": "20%",
+    "offer": "Free AppleCare+ for 1 Year",
+    "description": "Professional laptop with M3 chip, Liquid Retina XDR display, and up to 22-hour battery life. Perfect for creative professionals and power users.",
+    "images": [
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.9,
+    "reviews": 856,
+    "inStock": true,
+    "features": ["M3 Chip", "16GB RAM", "512GB SSD", "Retina Display"]
+  },
+  {
+    "id": 3,
+    "name": "Premium Cotton T-Shirt",
+    "category": "clothing",
+    "price": "$29",
+    "originalPrice": "$39",
+    "discount": "26%",
+    "offer": "Buy 3 Get 1 Free",
+    "description": "Ultra-soft premium cotton t-shirt with perfect fit and breathable fabric. Pre-shrunk and color-fast for long-lasting wear.",
+    "images": [
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1583743814966-8936f37f4cc9?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.5,
+    "reviews": 342,
+    "inStock": true,
+    "features": ["100% Cotton", "Pre-shrunk", "Color-fast", "Multiple Sizes"]
+  },
+  {
+    "id": 4,
+    "name": "Designer Jeans",
+    "category": "clothing",
+    "price": "$89",
+    "originalPrice": "$129",
+    "discount": "31%",
+    "offer": "Free Hemming Service",
+    "description": "Premium denim jeans with contemporary fit and superior craftsmanship. Features stretch fabric for comfort and durability.",
+    "images": [
+      "https://images.unsplash.com/photo-1542272604-787c3835535d?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.6,
+    "reviews": 278,
+    "inStock": true,
+    "features": [
+      "Stretch Denim",
+      "Fade Resistant",
+      "Designer Cut",
+      "Premium Quality"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Running Sneakers",
+    "category": "clothing",
+    "price": "$119",
+    "originalPrice": "$159",
+    "discount": "25%",
+    "offer": "Free Running Socks",
+    "description": "High-performance running shoes with advanced cushioning technology and breathable mesh upper for maximum comfort during workouts.",
+    "images": [
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.7,
+    "reviews": 523,
+    "inStock": true,
+    "features": [
+      "Air Cushioning",
+      "Breathable Mesh",
+      "Lightweight",
+      "Anti-Slip Sole"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Wireless Headphones",
+    "category": "electronics",
+    "price": "$199",
+    "originalPrice": "$249",
+    "discount": "20%",
+    "offer": "Free Carrying Case",
+    "description": "Premium wireless headphones with active noise cancellation, 30-hour battery life, and studio-quality sound.",
+    "images": [
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1577174881658-0f30ed549adc?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.6,
+    "reviews": 445,
+    "inStock": true,
+    "features": [
+      "Noise Cancellation",
+      "30hr Battery",
+      "Wireless",
+      "Studio Quality"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "4K Gaming Monitor",
+    "category": "electronics",
+    "price": "$399",
+    "originalPrice": "$499",
+    "discount": "20%",
+    "offer": "Free HDMI Cable",
+    "description": "27-inch 4K gaming monitor with 144Hz refresh rate, HDR support, and ultra-low input lag for competitive gaming.",
+    "images": [
+      "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1551721434-8b94ddff0e6d?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.8,
+    "reviews": 267,
+    "inStock": true,
+    "features": ["4K Resolution", "144Hz", "HDR Support", "Low Input Lag"]
+  },
+  {
+    "id": 8,
+    "name": "Mechanical Keyboard",
+    "category": "electronics",
+    "price": "$129",
+    "originalPrice": "$169",
+    "discount": "24%",
+    "offer": "Free Keycap Puller",
+    "description": "RGB mechanical keyboard with Cherry MX switches, customizable lighting, and durable aluminum frame for gaming and typing.",
+    "images": [
+      "https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1595044426077-d36d9236d54a?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.7,
+    "reviews": 389,
+    "inStock": true,
+    "features": [
+      "Cherry MX Switches",
+      "RGB Lighting",
+      "Aluminum Frame",
+      "Programmable"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Gaming Mouse",
+    "category": "electronics",
+    "price": "$69",
+    "originalPrice": "$89",
+    "discount": "22%",
+    "offer": "Free Mouse Pad",
+    "description": "High-precision gaming mouse with 16000 DPI sensor, customizable buttons, and ergonomic design for extended gaming sessions.",
+    "images": [
+      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.5,
+    "reviews": 412,
+    "inStock": true,
+    "features": [
+      "16000 DPI",
+      "Customizable Buttons",
+      "Ergonomic",
+      "RGB Lighting"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Mystery Novel Collection",
+    "category": "books",
+    "price": "$24",
+    "originalPrice": "$35",
+    "discount": "31%",
+    "offer": "Free Bookmark Set",
+    "description": "Bestselling mystery novel with intricate plot twists and compelling characters. Perfect for thriller enthusiasts and book club discussions.",
+    "images": [
+      "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.4,
+    "reviews": 156,
+    "inStock": true,
+    "features": ["Bestseller", "Plot Twists", "Book Club Pick", "Hardcover"]
+  },
+  {
+    "id": 11,
+    "name": "Celebrity Biography",
+    "category": "books",
+    "price": "$28",
+    "originalPrice": "$35",
+    "discount": "20%",
+    "offer": "Signed Copy Available",
+    "description": "Inspiring biography of a renowned celebrity, filled with untold stories, personal struggles, and triumphant moments.",
+    "images": [
+      "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1589998059171-988d887df646?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.6,
+    "reviews": 203,
+    "inStock": true,
+    "features": [
+      "Inspiring Story",
+      "Untold Stories",
+      "Personal Journey",
+      "Bestseller"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Professional Cookbook",
+    "category": "books",
+    "price": "$45",
+    "originalPrice": "$59",
+    "discount": "24%",
+    "offer": "Free Recipe Cards",
+    "description": "Comprehensive cookbook with 200+ recipes from world-renowned chef. Includes step-by-step photos and professional cooking techniques.",
+    "images": [
+      "https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1507546744745-d6b5e9e2ac41?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.8,
+    "reviews": 324,
+    "inStock": true,
+    "features": [
+      "200+ Recipes",
+      "Step-by-step Photos",
+      "Professional Tips",
+      "World Cuisine"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "iPad Pro 12.9\"",
+    "category": "electronics",
+    "price": "$1099",
+    "originalPrice": "$1299",
+    "discount": "15%",
+    "offer": "Free Apple Pencil",
+    "description": "Powerful tablet with M2 chip, Liquid Retina XDR display, and all-day battery life. Perfect for creativity and productivity.",
+    "images": [
+      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.7,
+    "reviews": 445,
+    "inStock": true,
+    "features": [
+      "M2 Chip",
+      "12.9\" Display",
+      "Apple Pencil Support",
+      "All-day Battery"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Gaming Chair Pro",
+    "category": "electronics",
+    "price": "$299",
+    "originalPrice": "$399",
+    "discount": "25%",
+    "offer": "Free Assembly Service",
+    "description": "Ergonomic gaming chair with lumbar support, adjustable armrests, and premium PU leather for comfort during long gaming sessions.",
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1541558869434-2840d308329a?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1503602642458-232111445657?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.5,
+    "reviews": 267,
+    "inStock": true,
+    "features": [
+      "Ergonomic Design",
+      "Lumbar Support",
+      "Adjustable Armrests",
+      "PU Leather"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Winter Jacket",
+    "category": "clothing",
+    "price": "$149",
+    "originalPrice": "$199",
+    "discount": "25%",
+    "offer": "Free Shipping",
+    "description": "Premium winter jacket with down insulation, waterproof exterior, and adjustable hood. Perfect for cold weather activities.",
+    "images": [
+      "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.6,
+    "reviews": 189,
+    "inStock": true,
+    "features": [
+      "Down Insulation",
+      "Waterproof",
+      "Adjustable Hood",
+      "Multiple Pockets"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Silk Scarf",
+    "category": "clothing",
+    "price": "$59",
+    "originalPrice": "$79",
+    "discount": "25%",
+    "offer": "Gift Box Included",
+    "description": "Luxurious silk scarf with elegant pattern and soft texture. Perfect accessory for any outfit and special occasions.",
+    "images": [
+      "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.7,
+    "reviews": 145,
+    "inStock": true,
+    "features": [
+      "100% Silk",
+      "Elegant Pattern",
+      "Soft Texture",
+      "Versatile Style"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Leather Belt",
+    "category": "clothing",
+    "price": "$69",
+    "originalPrice": "$89",
+    "discount": "22%",
+    "offer": "Free Engraving",
+    "description": "Genuine leather belt with classic buckle and timeless design. Crafted from premium materials for durability and style.",
+    "images": [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1581115260231-e10afd6bf637?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.5,
+    "reviews": 234,
+    "inStock": true,
+    "features": [
+      "Genuine Leather",
+      "Classic Buckle",
+      "Premium Quality",
+      "Timeless Design"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Romance Novel",
+    "category": "books",
+    "price": "$19",
+    "originalPrice": "$25",
+    "discount": "24%",
+    "offer": "Author's Newsletter Signup",
+    "description": "Captivating romance novel with beautiful characters and heartwarming story. Perfect for readers who love emotional journeys.",
+    "images": [
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1518373714866-3f1478910cc0?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.3,
+    "reviews": 178,
+    "inStock": true,
+    "features": [
+      "Heartwarming",
+      "Character Development",
+      "Emotional Journey",
+      "Popular Series"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Travel Guide Europe",
+    "category": "books",
+    "price": "$32",
+    "originalPrice": "$42",
+    "discount": "24%",
+    "offer": "Free Digital Maps",
+    "description": "Comprehensive travel guide covering 25+ European countries with insider tips, detailed maps, and cultural insights.",
+    "images": [
+      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.6,
+    "reviews": 267,
+    "inStock": true,
+    "features": [
+      "25+ Countries",
+      "Insider Tips",
+      "Detailed Maps",
+      "Cultural Insights"
+    ]
+  },
+  {
+    "id": 1,
+    "name": "iPhone 15 Pro",
+    "category": "electronics",
+    "price": "$999",
+    "originalPrice": "$1199",
+    "discount": "17%",
+    "offer": "Free AirPods with Purchase",
+    "description": "Latest iPhone with titanium design, A17 Pro chip, and advanced camera system. Features 256GB storage, ProRAW photography, and all-day battery life with exceptional performance for professionals and enthusiasts.",
+    "images": [
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.8,
+    "reviews": 1247,
+    "inStock": true,
+    "features": [
+      "A17 Pro Chip",
+      "Titanium Design",
+      "ProRAW Camera",
+      "5G Ready"
+    ],
+    "numericPrice": 999
+  },
+  {
+    "id": 2,
+    "name": "MacBook Pro 14\"",
+    "category": "electronics",
+    "price": "$1599",
+    "originalPrice": "$1999",
+    "discount": "20%",
+    "offer": "Free AppleCare+ for 1 Year",
+    "description": "Professional laptop with M3 chip, Liquid Retina XDR display, and up to 22-hour battery life. Perfect for creative professionals and power users who demand the best performance.",
+    "images": [
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.9,
+    "reviews": 856,
+    "inStock": true,
+    "features": ["M3 Chip", "16GB RAM", "512GB SSD", "Retina Display"],
+    "numericPrice": 1599
+  },
+  {
+    "id": 3,
+    "name": "Premium Cotton T-Shirt",
+    "category": "clothing",
+    "price": "$29",
+    "originalPrice": "$39",
+    "discount": "26%",
+    "offer": "Buy 3 Get 1 Free",
+    "description": "Ultra-soft premium cotton t-shirt with perfect fit and breathable fabric. Pre-shrunk and color-fast for long-lasting wear. Available in multiple colors and sizes.",
+    "images": [
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1583743814966-8936f37f4cc9?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.5,
+    "reviews": 342,
+    "inStock": true,
+    "features": ["100% Cotton", "Pre-shrunk", "Color-fast", "Multiple Sizes"],
+    "numericPrice": 29
+  },
+  {
+    "id": 4,
+    "name": "Designer Jeans",
+    "category": "clothing",
+    "price": "$89",
+    "originalPrice": "$129",
+    "discount": "31%",
+    "offer": "Free Hemming Service",
+    "description": "Premium denim jeans with contemporary fit and superior craftsmanship. Features stretch fabric for comfort and durability. Perfect for both casual and semi-formal occasions.",
+    "images": [
+      "https://images.unsplash.com/photo-1542272604-787c3835535d?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.6,
+    "reviews": 278,
+    "inStock": true,
+    "features": [
+      "Stretch Denim",
+      "Fade Resistant",
+      "Designer Cut",
+      "Premium Quality"
+    ],
+    "numericPrice": 89
+  },
+  {
+    "id": 5,
+    "name": "Running Sneakers",
+    "category": "clothing",
+    "price": "$119",
+    "originalPrice": "$159",
+    "discount": "25%",
+    "offer": "Free Running Socks",
+    "description": "High-performance running shoes with advanced cushioning technology and breathable mesh upper for maximum comfort during workouts and daily activities.",
+    "images": [
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.7,
+    "reviews": 523,
+    "inStock": true,
+    "features": [
+      "Air Cushioning",
+      "Breathable Mesh",
+      "Lightweight",
+      "Anti-Slip Sole"
+    ],
+    "numericPrice": 119
+  },
+  {
+    "id": 6,
+    "name": "Wireless Headphones",
+    "category": "electronics",
+    "price": "$199",
+    "originalPrice": "$249",
+    "discount": "20%",
+    "offer": "Free Carrying Case",
+    "description": "Premium wireless headphones with active noise cancellation, 30-hour battery life, and studio-quality sound for music lovers and professionals.",
+    "images": [
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1577174881658-0f30ed549adc?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.6,
+    "reviews": 445,
+    "inStock": true,
+    "features": [
+      "Noise Cancellation",
+      "30hr Battery",
+      "Wireless",
+      "Studio Quality"
+    ],
+    "numericPrice": 199
+  },
+  {
+    "id": 7,
+    "name": "4K Gaming Monitor",
+    "category": "electronics",
+    "price": "$399",
+    "originalPrice": "$499",
+    "discount": "20%",
+    "offer": "Free HDMI Cable",
+    "description": "27-inch 4K gaming monitor with 144Hz refresh rate, HDR support, and ultra-low input lag for competitive gaming and professional work.",
+    "images": [
+      "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1551721434-8b94ddff0e6d?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.8,
+    "reviews": 267,
+    "inStock": true,
+    "features": ["4K Resolution", "144Hz", "HDR Support", "Low Input Lag"],
+    "numericPrice": 399
+  },
+  {
+    "id": 8,
+    "name": "Mechanical Keyboard",
+    "category": "electronics",
+    "price": "$129",
+    "originalPrice": "$169",
+    "discount": "24%",
+    "offer": "Free Keycap Puller",
+    "description": "RGB mechanical keyboard with Cherry MX switches, customizable lighting, and durable aluminum frame for gaming and professional typing.",
+    "images": [
+      "https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1595044426077-d36d9236d54a?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.7,
+    "reviews": 389,
+    "inStock": true,
+    "features": [
+      "Cherry MX Switches",
+      "RGB Lighting",
+      "Aluminum Frame",
+      "Programmable"
+    ],
+    "numericPrice": 129
+  },
+  {
+    "id": 9,
+    "name": "Gaming Mouse",
+    "category": "electronics",
+    "price": "$69",
+    "originalPrice": "$89",
+    "discount": "22%",
+    "offer": "Free Mouse Pad",
+    "description": "High-precision gaming mouse with 16000 DPI sensor, customizable buttons, and ergonomic design for extended gaming sessions and productivity work.",
+    "images": [
+      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.5,
+    "reviews": 412,
+    "inStock": true,
+    "features": [
+      "16000 DPI",
+      "Customizable Buttons",
+      "Ergonomic",
+      "RGB Lighting"
+    ],
+    "numericPrice": 69
+  },
+  {
+    "id": 10,
+    "name": "Mystery Novel Collection",
+    "category": "books",
+    "price": "$24",
+    "originalPrice": "$35",
+    "discount": "31%",
+    "offer": "Free Bookmark Set",
+    "description": "Bestselling mystery novel with intricate plot twists and compelling characters. Perfect for thriller enthusiasts and book club discussions with friends.",
+    "images": [
+      "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.4,
+    "reviews": 156,
+    "inStock": true,
+    "features": ["Bestseller", "Plot Twists", "Book Club Pick", "Hardcover"],
+    "numericPrice": 24
+  },
+  {
+    "id": 11,
+    "name": "Celebrity Biography",
+    "category": "books",
+    "price": "$28",
+    "originalPrice": "$35",
+    "discount": "20%",
+    "offer": "Signed Copy Available",
+    "description": "Inspiring biography of a renowned celebrity, filled with untold stories, personal struggles, and triumphant moments that shaped their incredible journey.",
+    "images": [
+      "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1589998059171-988d887df646?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.6,
+    "reviews": 203,
+    "inStock": true,
+    "features": [
+      "Inspiring Story",
+      "Untold Stories",
+      "Personal Journey",
+      "Bestseller"
+    ],
+    "numericPrice": 28
+  },
+  {
+    "id": 12,
+    "name": "Professional Cookbook",
+    "category": "books",
+    "price": "$45",
+    "originalPrice": "$59",
+    "discount": "24%",
+    "offer": "Free Recipe Cards",
+    "description": "Comprehensive cookbook with 200+ recipes from world-renowned chef. Includes step-by-step photos and professional cooking techniques for home chefs.",
+    "images": [
+      "https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1507546744745-d6b5e9e2ac41?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.8,
+    "reviews": 324,
+    "inStock": true,
+    "features": [
+      "200+ Recipes",
+      "Step-by-step Photos",
+      "Professional Tips",
+      "World Cuisine"
+    ],
+    "numericPrice": 45
+  },
+  {
+    "id": 13,
+    "name": "iPad Pro 12.9\"",
+    "category": "electronics",
+    "price": "$1099",
+    "originalPrice": "$1299",
+    "discount": "15%",
+    "offer": "Free Apple Pencil",
+    "description": "Powerful tablet with M2 chip, Liquid Retina XDR display, and all-day battery life. Perfect for creativity, productivity, and professional work on the go.",
+    "images": [
+      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.7,
+    "reviews": 445,
+    "inStock": true,
+    "features": [
+      "M2 Chip",
+      "12.9\" Display",
+      "Apple Pencil Support",
+      "All-day Battery"
+    ],
+    "numericPrice": 1099
+  },
+  {
+    "id": 14,
+    "name": "Gaming Chair Pro",
+    "category": "electronics",
+    "price": "$299",
+    "originalPrice": "$399",
+    "discount": "25%",
+    "offer": "Free Assembly Service",
+    "description": "Ergonomic gaming chair with lumbar support, adjustable armrests, and premium PU leather for comfort during long gaming sessions and work hours.",
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1541558869434-2840d308329a?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1503602642458-232111445657?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.5,
+    "reviews": 267,
+    "inStock": true,
+    "features": [
+      "Ergonomic Design",
+      "Lumbar Support",
+      "Adjustable Armrests",
+      "PU Leather"
+    ],
+    "numericPrice": 299
+  },
+  {
+    "id": 15,
+    "name": "Winter Jacket",
+    "category": "clothing",
+    "price": "$149",
+    "originalPrice": "$199",
+    "discount": "25%",
+    "offer": "Free Shipping",
+    "description": "Premium winter jacket with down insulation, waterproof exterior, and adjustable hood. Perfect for cold weather activities and outdoor adventures.",
+    "images": [
+      "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.6,
+    "reviews": 189,
+    "inStock": true,
+    "features": [
+      "Down Insulation",
+      "Waterproof",
+      "Adjustable Hood",
+      "Multiple Pockets"
+    ],
+    "numericPrice": 149
+  },
+  {
+    "id": 16,
+    "name": "Silk Scarf",
+    "category": "clothing",
+    "price": "$59",
+    "originalPrice": "$79",
+    "discount": "25%",
+    "offer": "Gift Box Included",
+    "description": "Luxurious silk scarf with elegant pattern and soft texture. Perfect accessory for any outfit and special occasions, adding elegance to your style.",
+    "images": [
+      "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.7,
+    "reviews": 145,
+    "inStock": true,
+    "features": [
+      "100% Silk",
+      "Elegant Pattern",
+      "Soft Texture",
+      "Versatile Style"
+    ],
+    "numericPrice": 59
+  },
+  {
+    "id": 17,
+    "name": "Leather Belt",
+    "category": "clothing",
+    "price": "$69",
+    "originalPrice": "$89",
+    "discount": "22%",
+    "offer": "Free Engraving",
+    "description": "Genuine leather belt with classic buckle and timeless design. Crafted from premium materials for durability and style that lasts for years.",
+    "images": [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1581115260231-e10afd6bf637?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.5,
+    "reviews": 234,
+    "inStock": true,
+    "features": [
+      "Genuine Leather",
+      "Classic Buckle",
+      "Premium Quality",
+      "Timeless Design"
+    ],
+    "numericPrice": 69
+  },
+  {
+    "id": 18,
+    "name": "Romance Novel",
+    "category": "books",
+    "price": "$19",
+    "originalPrice": "$25",
+    "discount": "24%",
+    "offer": "Author's Newsletter Signup",
+    "description": "Captivating romance novel with beautiful characters and heartwarming story. Perfect for readers who love emotional journeys and happy endings.",
+    "images": [
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1518373714866-3f1478910cc0?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.3,
+    "reviews": 178,
+    "inStock": true,
+    "features": [
+      "Heartwarming",
+      "Character Development",
+      "Emotional Journey",
+      "Popular Series"
+    ],
+    "numericPrice": 19
+  },
+  {
+    "id": 19,
+    "name": "Travel Guide Europe",
+    "category": "books",
+    "price": "$32",
+    "originalPrice": "$42",
+    "discount": "24%",
+    "offer": "Free Digital Maps",
+    "description": "Comprehensive travel guide covering 25+ European countries with insider tips, detailed maps, and cultural insights for the perfect European adventure.",
+    "images": [
+      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.6,
+    "reviews": 267,
+    "inStock": true,
+    "features": [
+      "25+ Countries",
+      "Insider Tips",
+      "Detailed Maps",
+      "Cultural Insights"
+    ],
+    "numericPrice": 32
+  },
+  {
+    "id": 20,
+    "name": "Crime Thriller",
+    "category": "books",
+    "price": "$22",
+    "originalPrice": "$28",
+    "discount": "21%",
+    "offer": "Free Audiobook Version",
+    "description": "Gripping crime thriller with unexpected twists and complex characters. A page-turner that will keep you guessing until the very last page.",
+    "images": [
+      "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=250&h=250&fit=crop",
+      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=250&h=250&fit=crop"
+    ],
+    "rating": 4.5,
+    "reviews": 312,
+    "inStock": true,
+    "features": [
+      "Unexpected Twists",
+      "Complex Characters",
+      "Page-turner",
+      "Award Winner"
+    ],
+    "numericPrice": 22
+  }
+]    
