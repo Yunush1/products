@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Marketplace Dashboard</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; }
+  h1 { color: #333; }
+  table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+  th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+  th { background-color: #f4f4f4; }
+  .role-info { margin-top: 10px; color: #777; }
+</style>
+</head>
+<body>
+
+<h1>Marketplace Dashboard</h1>
+
+<label for="userIdInput">Enter User ID (for demo): </label>
+<input type="text" id="userIdInput" placeholder="User ID here" />
+<button id="loadDataBtn">Load Dashboard</button>
+
+<div class="role-info" id="roleInfo"></div>
+
+<table id="ordersTable" style="display:none;">
+  <thead>
+    <tr id="tableHeaderRow"></tr>
+  </thead>
+  <tbody id="ordersBody"></tbody>
+</table>
+
+<script>
+  const loadDataBtn = document.getElementById('loadDataBtn');
+  const userIdInput = document.getElementById('userIdInput');
+  const roleInfo = document.getElementById('roleInfo');
+  const ordersTable = document.getElementById('ordersTable');
+  const tableHeaderRow = document.getElementById('tableHeaderRow');
+  const ordersBody = document.getElementById('ordersBody');
+
+  loadDataBtn.addEventListener('click', () => {
+    const userId = userIdInput.value.trim();
+    if (!userId) {
+      alert('Please enter User ID');
+      return;
+    }
+
+    fetch(`/dashboard?userId=${userId}`)
+      .then(res => {
+        if (!res.ok) throw new Error(`Error: ${res.statusText}`);
+        return res.json();
+      })
+      .then(data => {
+        displayDashboard(data);
+      })
+      .catch(err => {
+        alert(`Failed to load data: ${err.message}`);
+      });
+  });
+
+  function displayDashboard(data) {
+    roleInfo.textContent = `Logged in as: ${data.user.name} (Role: ${data.user.role})`;
+
+    if (!data.orders.length) {
+      ordersTable.style.display = 'none';
+      alert('No orders found for this user.');
+      return;
+    }
+
+    // Clear previous table
+    tableHeaderRow.innerHTML = '';
+    ordersBody.innerHTML = '';
+    ordersTable.style.display = 'table';
+
+    // Define different table columns based on role
+    let columns = [];
+
+    if (data.user.role === 'admin') {
+      columns = ['Order ID', 'Buyer', 'Product', 'Price Paid', 'Admin Commission', 'Commission GST', 'TCS', 'Owner Payout', 'Payment Date'];
+    } else if (data.user.role === 'supplier') {
+      columns = ['Order ID', 'Buyer', 'Product', 'Price Paid', 'Admin Commission', 'Commission GST', 'TCS', 'Owner Payout', 'Payment Date'];
+    } else if (data.user.role === 'buyer') {
+      columns = ['Order ID', 'Product', 'Price Paid', 'Payment Date'];
+    }
+
+    // Build header row
+    columns.forEach(colName => {
+      const th = document.createElement('th');
+      th.textContent = colName;
+      tableHeaderRow.appendChild(th);
+    });
+
+    // Build rows
+    data.orders.forEach(order => {
+      const tr = document.createElement('tr');
+
+      if (data.user.role === 'admin') {
+        addCell(tr, order._id);
+        addCell(tr, order.userId?.name || 'N/A');
+        addCell(tr, order.productId?.name || 'N/A');
+        addCell(tr, formatCurrency(order.pricePaid));
+        addCell(tr, formatCurrency(order.adminCommission));
+        addCell(tr, formatCurrency(order.commissionGst));
+        addCell(tr, formatCurrency(order.tcs));
+        addCell(tr, formatCurrency(order.ownerPayout));
+        addCell(tr, new Date(order.paymentDate).toLocaleDateString());
+      } else if (data.user.role === 'supplier') {
+        addCell(tr, order._id);
+        addCell(tr, order.userId?.name || 'N/A');
+        addCell(tr, order.productId?.name || 'N/A');
+        addCell(tr, formatCurrency(order.pricePaid));
+        addCell(tr, formatCurrency(order.adminCommission));
+        addCell(tr, formatCurrency(order.commissionGst));
+        addCell(tr, formatCurrency(order.tcs));
+        addCell(tr, formatCurrency(order.ownerPayout));
+        addCell(tr, new Date(order.paymentDate).toLocaleDateString());
+      } else { // buyer
+        addCell(tr, order._id);
+        addCell(tr, order.productId?.name || 'N/A');
+        addCell(tr, formatCurrency(order.pricePaid));
+        addCell(tr, new Date(order.paymentDate).toLocaleDateString());
+      }
+
+      ordersBody.appendChild(tr);
+    });
+  }
+
+  function addCell(row, text) {
+    const td = document.createElement('td');
+    td.textContent = text;
+    row.appendChild(td);
+  }
+
+  function formatCurrency(amount) {
+    if (typeof amount !== 'number') return amount || 'N/A';
+    return `₹${amount.toFixed(2)}`;
+  }
+</script>
+</body>
+</html>

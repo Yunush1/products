@@ -21,7 +21,6 @@ const __dirname = path.dirname(__filename);
 
 // Serve static files (like CSS, JS, images)
 app.use(express.static(path.join(__dirname, 'public')));
-
 const data = JSON.parse(fs.readFileSync('./.temp/product.json'));
 app.use("/api", routes);
 try {
@@ -142,6 +141,9 @@ app.get('/products', (req, res) => {
 });
 app.get("/products/payment", (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'checkout.html'));
+});
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
 // ✅ Start server
