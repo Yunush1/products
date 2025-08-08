@@ -32,7 +32,7 @@ const io = socketIo(server, {
 
 // MongoDB connection
 // const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/chatapp';
-const MONGODB_URI = 'mongodb+srv://alpha:alpha123@cluster0.lbrzmtv.mongodb.net/chatapp?retryWrites=true&w=majority'
+const MONGODB_URI = 'mongodb+srv://yunushkh9:asdfg9350@duniacluster.refdvl4.mongodb.net/chatapp?retryWrites=true&w=majority&appName=Cluster0'
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -95,10 +95,10 @@ const messageSchema = new mongoose.Schema({
   content: { type: String },
   sender: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   room: { type: mongoose.Schema.Types.ObjectId, ref: 'Room', required: true },
-  messageType: { 
-    type: String, 
-    enum: ['text', 'image', 'file'], 
-    default: 'text' 
+  messageType: {
+    type: String,
+    enum: ['text', 'image', 'file'],
+    default: 'text'
   },
   fileName: { type: String },
   fileUrl: { type: String },
@@ -274,26 +274,69 @@ app.get("/api/users", requireAuth, async (req, res) => {
 })
 
 // Create room
+// app.post('/api/rooms', requireAuth, async (req, res) => {
+//   try {
+//     const { name, description, isPrivate, participants } = req.body;
+//     const room = new Room({
+//       name,
+//       description,
+//       isPrivate: isPrivate || false,
+//       createdBy: req.session.userId,
+//       participants
+//     });
+//     const s = Room.find({ participants:participants });
+//     console.log("s",s)
+//     await room.save();
+//     await room.populate('participants', 'username avatar isOnline');
+
+//     res.status(201).json(room);
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// });
+
 app.post('/api/rooms', requireAuth, async (req, res) => {
   try {
-    const { name, description, isPrivate } = req.body;
+    let { name, description, isPrivate, participants } = req.body;
+    // Always ensure current user is part of participants
+    if (!participants || !Array.isArray(participants)) participants = [];
+    if (!participants.includes(req.session.userId)) participants.push(req.session.userId);
 
+    // unordered matching: room with same participants and same length
+    const existingRoom = await Room.findOne({
+      isPrivate: isPrivate || false,
+      participants: { $all: participants },
+      $expr: { $eq: [ { $size: "$participants" }, participants.length ] }
+    });
+
+    if (existingRoom) {
+      // Only return IDs for clarity (can be full docs if you wish)
+      return res.status(200).json({
+        message: "Existing",
+        room: existingRoom
+      });
+    }
+
+    // Create the new room
     const room = new Room({
       name,
       description,
       isPrivate: isPrivate || false,
       createdBy: req.session.userId,
-      participants: [req.session.userId]
+      participants
     });
-
     await room.save();
     await room.populate('participants', 'username avatar isOnline');
 
-    res.status(201).json(room);
+    res.status(201).json({
+      message: "Created",
+      room
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
+
 
 // Get user's rooms
 app.get('/api/rooms', requireAuth, async (req, res) => {
@@ -301,10 +344,9 @@ app.get('/api/rooms', requireAuth, async (req, res) => {
     const rooms = await Room.find({
       participants: req.session.userId
     })
-    .populate('participants', 'username avatar isOnline')
-    .populate('createdBy', 'username')
-    .sort({ updatedAt: -1 });
-
+      .populate('participants', 'username avatar isOnline')
+      .populate('createdBy', 'username')
+      .sort({ updatedAt: -1 });
     res.json(rooms);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -335,7 +377,7 @@ app.post('/api/rooms/:roomId/join', requireAuth, async (req, res) => {
 app.get('/api/rooms/:roomId/messages', requireAuth, async (req, res) => {
   try {
     const { page = 1, limit = 50 } = req.query;
-    
+
     const room = await Room.findById(req.params.roomId);
     if (!room || !room.participants.includes(req.session.userId)) {
       return res.status(403).json({ error: 'Access denied' });
@@ -362,7 +404,7 @@ app.post('/api/upload', requireAuth, upload.single('file'), (req, res) => {
     }
 
     const fileUrl = `/uploads/${req.file.filename}`;
-    
+
     res.json({
       fileName: req.file.originalname,
       fileUrl: fileUrl,
@@ -431,7 +473,7 @@ io.on('connection', (socket) => {
 
       await message.save();
       await message.populate('sender', 'username avatar');
-      
+
       if (replyTo) {
         await message.populate('replyTo');
       }
@@ -484,7 +526,7 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', async () => {
     console.log('User disconnected:', socket.id);
-    
+
     // Update user offline status
     await User.findByIdAndUpdate(userId, {
       isOnline: false,

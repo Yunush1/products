@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +34,7 @@
             background: white;
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             width: 400px;
             text-align: center;
         }
@@ -228,7 +229,8 @@
             display: block;
         }
 
-        .user-item, .room-item {
+        .user-item,
+        .room-item {
             padding: 15px 20px;
             border-bottom: 1px solid #f0f2f5;
             cursor: pointer;
@@ -238,7 +240,8 @@
             gap: 15px;
         }
 
-        .user-item:hover, .room-item:hover {
+        .user-item:hover,
+        .room-item:hover {
             background: #f5f6f6;
         }
 
@@ -258,6 +261,13 @@
             font-weight: bold;
             font-size: 18px;
             position: relative;
+        }
+
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
         }
 
         .online-indicator {
@@ -315,6 +325,28 @@
             gap: 15px;
         }
 
+        .chat-header-component {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            padding: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .add-member-btn {
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            height: fit-content;
+            cursor: pointer;
+        }
+
         .back-btn {
             display: none;
             background: none;
@@ -368,7 +400,7 @@
             background: white;
             padding: 8px 12px;
             border-radius: 18px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             position: relative;
             max-width: 100%;
             word-wrap: break-word;
@@ -486,7 +518,7 @@
             background: white;
             border-radius: 12px;
             display: none;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .file-preview.show {
@@ -522,7 +554,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 1000;
         }
 
@@ -560,6 +592,155 @@
             cursor: pointer;
         }
 
+        /* Add members */
+        .add-members-modal {
+            display: none;
+            position: fixed;
+            z-index: 1100;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(27, 36, 48, 0.35);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .add-members-modal-content {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08);
+            width: 380px;
+            max-width: 96vw;
+            padding: 24px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .add-members-modal-header h3 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 600;
+            color: #292e35;
+        }
+
+        .add-members-modal-header p {
+            margin: 4px 0 0;
+            font-size: 14px;
+            color: #667781;
+        }
+
+        .add-members-form-group {
+            width: 100%;
+            margin: 8px 0 10px;
+        }
+
+        .add-members-search-input {
+            width: 100%;
+            padding: 8px 14px;
+            border-radius: 7px;
+            background: #f3f6fa;
+            border: 1px solid #e1e5e9;
+            font-size: 15px;
+            margin-top: 3px;
+            margin-bottom: 7px;
+        }
+
+        .add-members-user-list {
+            max-height: 260px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .add-members-user-item {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            background: #f9fafb;
+            border-radius: 7px;
+            padding: 8px 10px;
+            border: 1px solid #f1f1f1;
+        }
+
+        .add-members-user-avatar {
+            width: 34px;
+            height: 34px;
+            background: #6a81f7;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 17px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .add-members-user-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .add-members-user-name {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .add-members-user-status {
+            font-size: 12px;
+            color: #8ca1b8;
+        }
+
+        .add-members-add-btn {
+            background: #25d366;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 14px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background .17s;
+        }
+
+        .add-members-add-btn:hover {
+            background: #128c7e;
+        }
+
+        .add-members-modal-actions {
+            margin-top: 12px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .add-members-btn-secondary {
+            background: #f4f6fa;
+            color: #333;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 18px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background .17s;
+        }
+
+        .add-members-btn-secondary:hover {
+            background: #e1e5e9;
+        }
+
+        
+
+        .add-members-modal.show {
+            display: flex;
+            /* Show when 'show' class is added */
+        }
+
         /* Status messages */
         .status {
             position: fixed;
@@ -567,7 +748,7 @@
             right: 20px;
             padding: 15px 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             z-index: 1001;
             font-weight: 500;
         }
@@ -613,22 +794,23 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Authentication Container -->
     <div class="auth-container" id="authContainer">
         <div class="auth-box">
             <h1>💬 Chat App</h1>
-            
+
             <div class="auth-tabs">
                 <button class="auth-tab active" onclick="showAuthForm('login')">Login</button>
                 <button class="auth-tab" onclick="showAuthForm('register')">Register</button>
             </div>
-            
+
             <!-- Login Form -->
             <form class="auth-form active" id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" id="loginEmail" required>
+                    <input type="text" id="loginEmail" required>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
@@ -636,7 +818,7 @@
                 </div>
                 <button type="submit" class="auth-btn">Login</button>
             </form>
-            
+
             <!-- Register Form -->
             <form class="auth-form" id="registerForm" onsubmit="handleRegister(event)">
                 <div class="form-group">
@@ -672,9 +854,10 @@
                     <button class="icon-btn" onclick="logout()">🚪 Logout</button>
                 </div>
             </div>
-            
+
             <div class="search-bar">
-                <input type="text" class="search-input" placeholder="Search users or rooms" onkeyup="filterContent(this.value)">
+                <input type="text" class="search-input" placeholder="Search users or rooms"
+                    onkeyup="filterContent(this.value)">
             </div>
 
             <!-- Tabs for Users and Rooms -->
@@ -682,7 +865,7 @@
                 <button class="tab-btn active" onclick="showTab('users')">All Users</button>
                 <button class="tab-btn" onclick="showTab('rooms')">My Rooms</button>
             </div>
-            
+
             <!-- Users Tab -->
             <div class="tab-content active" id="usersTab">
                 <div id="usersList">
@@ -700,13 +883,16 @@
 
         <!-- Main Chat Area -->
         <div class="chat-main">
-            <div class="chat-header" id="chatHeader" style="display: none;">
-                <button class="back-btn" onclick="toggleSidebar()">←</button>
-                <div class="item-avatar" id="chatRoomAvatar">R</div>
-                <div class="chat-room-info">
-                    <h3 id="chatRoomName">Select a room</h3>
-                    <div class="chat-room-status" id="chatRoomStatus">Click on a room to start messaging</div>
+            <div class="chat-header-component">
+                <div class="chat-header" id="chatHeader" style="display: none;">
+                    <button class="back-btn" onclick="toggleSidebar()">←</button>
+                    <div class="item-avatar" id="chatRoomAvatar">R</div>
+                    <div class="chat-room-info">
+                        <h3 id="chatRoomName">Select a room</h3>
+                        <div class="chat-room-status" id="chatRoomStatus">Click on a room to start messaging</div>
+                    </div>
                 </div>
+                <div class="add-member-btn" id="addMemberBtn" onclick="showAddMemberModal()">Add members</div>
             </div>
 
             <div class="messages-container" id="messagesContainer">
@@ -726,8 +912,10 @@
             <div class="input-area" id="inputArea" style="display: none;">
                 <div class="input-container">
                     <button class="attach-btn" onclick="document.getElementById('fileInput').click()">📎</button>
-                    <input type="text" class="message-input" id="messageInput" placeholder="Type a message" onkeypress="handleKeyPress(event)" oninput="handleTyping()">
-                    <input type="file" id="fileInput" accept="image/*,application/pdf,.doc,.docx,.txt" onchange="handleFileSelect(event)" style="display: none;">
+                    <input type="text" class="message-input" id="messageInput" placeholder="Type a message"
+                        onkeypress="handleKeyPress(event)" oninput="handleTyping()">
+                    <input type="file" id="fileInput" accept="image/*,application/pdf,.doc,.docx,.txt"
+                        onchange="handleFileSelect(event)" style="display: none;">
                 </div>
                 <button class="send-btn" id="sendBtn" onclick="sendMessage()">➤</button>
             </div>
@@ -763,6 +951,29 @@
         </div>
     </div>
 
+    <!-- Add Member Modal -->
+
+    <div class="add-members-modal" id="addMembersModal">
+        <div class="add-members-modal-content">
+            <div class="add-members-modal-header">
+                <h3>Add Members</h3>
+                <p>Select users to add to the room</p>
+            </div>
+            <div class="add-members-form-group">
+                <input type="text" id="addMembersSearchInput" class="add-members-search-input"
+                    placeholder="Search users..." oninput="filterAddMembersUsers(this.value)" />
+            </div>
+            <div class="add-members-user-list" id="addMembersUserListContainer">
+                <!-- JS will populate user items here -->
+            </div>
+            <div class="add-members-modal-actions">
+                <button type="button" class="add-members-btn-secondary"
+                    onclick="closeModal('addMembersModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Status Message -->
     <div class="status" id="status" style="display: none;"></div>
 
@@ -780,10 +991,12 @@
         function showAuthForm(type) {
             document.querySelectorAll('.auth-tab').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
-            
+
             event.target.classList.add('active');
             document.getElementById(type + 'Form').classList.add('active');
         }
+
+
 
         async function handleLogin(event) {
             event.preventDefault();
@@ -842,12 +1055,12 @@
                     method: 'POST',
                     credentials: 'include'
                 });
-                
+
                 if (socket) {
                     socket.disconnect();
                     socket = null;
                 }
-                
+
                 currentUser = null;
                 currentRoomId = null;
                 allUsers = [];
@@ -866,11 +1079,11 @@
         function showChatInterface() {
             document.getElementById('authContainer').style.display = 'none';
             document.getElementById('chatContainer').classList.add('active');
-            
+
             // Set user info
             document.getElementById('userName').textContent = currentUser.username;
             document.getElementById('userAvatar').textContent = currentUser.username.charAt(0).toUpperCase();
-            
+
             initSocket();
             loadAllUsers();
             loadUserRooms();
@@ -917,6 +1130,37 @@
             });
         }
 
+        // Addd member to room
+        async function addUserToRoom(userId) {
+            // TODO somthing
+        }
+        function populateAddMembersUserList(users) {
+            const container = document.getElementById('addMembersUserListContainer');
+            container.innerHTML = '';
+            users.forEach(user => {
+                const userItem = document.createElement('div');
+                userItem.className = 'add-members-user-item';
+
+                const avatar = document.createElement('div');
+                avatar.className = 'add-members-user-avatar';
+                avatar.textContent = user.username[0].toUpperCase();
+
+                const info = document.createElement('div');
+                info.className = 'add-members-user-info';
+                info.innerHTML = `<div class="add-members-user-name">${user.username}</div>
+      <div class="add-members-user-status">${user.isOnline ? 'Online' : 'Offline'}</div>`;
+
+                const btn = document.createElement('button');
+                btn.className = 'add-members-add-btn';
+                btn.textContent = 'Add';
+                btn.onclick = () => addUserToRoom(user._id);
+
+                userItem.append(avatar, info, btn);
+                container.appendChild(userItem);
+            });
+        }
+
+
         // User Functions
         async function loadAllUsers() {
             try {
@@ -929,6 +1173,7 @@
                     // Filter out current user
                     allUsers = allUsers.filter(user => user._id !== currentUser.id);
                     displayUsers(allUsers);
+                    populateAddMembersUserList(allUsers);
                 } else {
                     showStatus('Failed to load users', 'error');
                 }
@@ -950,14 +1195,15 @@
                 return;
             }
 
-            usersToShow.forEach(user => {
-                const userElement = document.createElement('div');
-                userElement.className = 'user-item';
-                userElement.onclick = () => createPrivateRoomWithUser(user);
-                
-                const userInitial = user.username.charAt(0).toUpperCase();
+            usersToShow.filter(user => user._id !== currentUser._id)
+                .forEach(user => {
+                    const userElement = document.createElement('div');
+                    userElement.className = 'user-item';
+                    userElement.onclick = () => createPrivateRoomWithUser(user);
 
-                userElement.innerHTML = `
+                    const userInitial = user.username.charAt(0).toUpperCase();
+
+                    userElement.innerHTML = `
                     <div class="item-avatar">
                         ${userInitial}
                         ${user.isOnline ? '<div class="online-indicator"></div>' : ''}
@@ -968,8 +1214,8 @@
                     </div>
                 `;
 
-                usersList.appendChild(userElement);
-            });
+                    usersList.appendChild(userElement);
+                });
         }
 
         // Room Functions
@@ -1011,14 +1257,17 @@
                     roomElement.classList.add('active');
                 }
                 roomElement.onclick = () => joinRoom(room);
-                
+
                 const roomInitial = room.name.charAt(0).toUpperCase();
 
                 roomElement.innerHTML = `
-                    <div class="item-avatar">${roomInitial}</div>
-                    <div class="item-info">
-                        <div class="item-name">${room.name}</div>
-                        <div class="item-status">${room.participants.length} participants</div>
+                    <div class="header-section">
+                        <div class="item-avatar">${roomInitial}</div>
+                        <div class="item-info">
+                            <div class="item-name">${room.name}</div>
+                            <div class="item-status">${room.participants.length} participants</div>
+                        </div>
+                        <div>
                     </div>
                 `;
 
@@ -1029,31 +1278,36 @@
         async function createPrivateRoomWithUser(user) {
             try {
                 // Create a room name with both users
-                const roomName = `${currentUser.username} & ${user.username}`;
-                
+                const roomName = `${user.username}`;
+
                 const response = await fetch(`${API_URL}/rooms`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     credentials: 'include',
-                    body: JSON.stringify({ 
+                    body: JSON.stringify({
                         name: roomName,
                         description: `Private chat between ${currentUser.username} and ${user.username}`,
-                        isPrivate: true
+                        isPrivate: true,
+                        participants: [currentUser._id, user._id]
                     })
                 });
 
                 if (response.ok) {
                     const newRoom = await response.json();
-                    
+
+                    if (newRoom.message === 'Existing') {
+                        joinRoom(newRoom.room)
+                        return
+                    }
                     // Add the other user to the room
                     await fetch(`${API_URL}/rooms/${newRoom._id}/join`, {
                         method: 'POST',
                         credentials: 'include'
                     });
-                    
+
                     // Reload rooms and join the new room
                     await loadUserRooms();
-                    joinRoom(newRoom);
+                    joinRoom(newRoom.room);
                     showTab('rooms');
                     showStatus(`Started private chat with ${user.username}`, 'success');
                 } else {
@@ -1061,6 +1315,7 @@
                     showStatus(data.error, 'error');
                 }
             } catch (error) {
+                console.error('Error creating private room:', error);
                 showStatus('Failed to create private room', 'error');
             }
         }
@@ -1068,34 +1323,34 @@
         async function joinRoom(room) {
             try {
                 currentRoomId = room._id;
-                
                 // Update UI
                 document.querySelectorAll('.room-item').forEach(item => item.classList.remove('active'));
-                event.currentTarget.classList.add('active');
-                
+                // event.currentTarget.classList.add('active');
+
                 document.getElementById('chatHeader').style.display = 'flex';
                 document.getElementById('chatRoomName').textContent = room.name;
                 document.getElementById('chatRoomAvatar').textContent = room.name.charAt(0).toUpperCase();
                 document.getElementById('chatRoomStatus').textContent = `${room.participants.length} participants`;
                 document.getElementById('inputArea').style.display = 'flex';
-                
+
                 // Clear messages container
                 const messagesContainer = document.getElementById('messagesContainer');
                 messagesContainer.innerHTML = '';
-                
+
                 // Join room via socket
                 if (socket) {
                     socket.emit('join_room', currentRoomId);
                 }
-                
+
                 // Load messages
                 await loadRoomMessages(currentRoomId);
-                
+
                 // Hide sidebar on mobile
                 if (window.innerWidth <= 768) {
                     document.getElementById('sidebar').classList.remove('show');
                 }
             } catch (error) {
+                console.log('Error joining room:', error);
                 showStatus('Failed to join room', 'error');
             }
         }
@@ -1129,12 +1384,16 @@
             document.getElementById('roomNameInput').focus();
         }
 
+        function showAddMemberModal() {
+            document.getElementById('addMembersModal').classList.add('show');
+        }
+
         async function createRoom(event) {
             event.preventDefault();
             const name = document.getElementById('roomNameInput').value.trim();
             const description = document.getElementById('roomDescInput').value.trim();
             const isPrivate = document.getElementById('isPrivateInput').checked;
-            
+
             if (!name) return;
 
             try {
@@ -1142,7 +1401,7 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     credentials: 'include',
-                    body: JSON.stringify({ name, description, isPrivate })
+                    body: JSON.stringify({ name, description, isPrivate, participants: [currentUser._id] })
                 });
 
                 if (response.ok) {
@@ -1151,14 +1410,14 @@
                     document.getElementById('roomNameInput').value = '';
                     document.getElementById('roomDescInput').value = '';
                     document.getElementById('isPrivateInput').checked = false;
-                    
+
                     await loadUserRooms();
                     showStatus('Room created successfully!', 'success');
-                    
+
                     // Auto-join the new room
                     setTimeout(() => {
                         const roomElements = document.querySelectorAll('.room-item');
-                        const newRoomElement = Array.from(roomElements).find(el => 
+                        const newRoomElement = Array.from(roomElements).find(el =>
                             el.textContent.includes(newRoom.name)
                         );
                         if (newRoomElement) {
@@ -1178,13 +1437,13 @@
         function displayMessage(message) {
             const messagesContainer = document.getElementById('messagesContainer');
             const messageElement = document.createElement('div');
-            
+
             const isOwn = message.sender._id === currentUser.id;
             messageElement.className = `message ${isOwn ? 'own' : 'other'}`;
 
-            const timestamp = new Date(message.createdAt).toLocaleTimeString([], { 
-                hour: '2-digit', 
-                minute: '2-digit' 
+            const timestamp = new Date(message.createdAt).toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit'
             });
 
             let content = `
@@ -1293,7 +1552,7 @@
                     showStatus('File size must be less than 10MB', 'error');
                     return;
                 }
-                
+
                 selectedFile = file;
                 showFilePreview(file);
             }
@@ -1302,19 +1561,19 @@
         function showFilePreview(file) {
             const previewDiv = document.getElementById('filePreview');
             const previewContent = document.getElementById('previewContent');
-            
+
             const fileSize = (file.size / 1024 / 1024).toFixed(2);
-            
+
             let content = `
                 <div>
                     <strong>${file.name}</strong><br>
                     <small>${fileSize} MB</small>
                 </div>
             `;
-            
+
             if (file.type.startsWith('image/')) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     previewContent.innerHTML = `
                         <img src="${e.target.result}" class="preview-image" alt="Preview">
                         ${content}
@@ -1324,7 +1583,7 @@
             } else {
                 previewContent.innerHTML = content;
             }
-            
+
             previewDiv.classList.add('show');
         }
 
@@ -1345,7 +1604,7 @@
         function handleTyping() {
             if (currentRoomId && socket) {
                 socket.emit('typing_start', currentRoomId);
-                
+
                 clearTimeout(typingTimer);
                 typingTimer = setTimeout(() => {
                     socket.emit('typing_stop', currentRoomId);
@@ -1357,21 +1616,21 @@
         function showTab(tabName) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-            
+            // loadUserRooms();
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
             document.getElementById(tabName + 'Tab').classList.add('active');
         }
 
         function filterContent(searchTerm) {
             const activeTab = document.querySelector('.tab-btn.active').textContent;
-            
+
             if (activeTab === 'All Users') {
-                const filteredUsers = allUsers.filter(user => 
+                const filteredUsers = allUsers.filter(user =>
                     user.username.toLowerCase().includes(searchTerm.toLowerCase())
                 );
                 displayUsers(filteredUsers);
             } else {
-                const filteredRooms = userRooms.filter(room => 
+                const filteredRooms = userRooms.filter(room =>
                     room.name.toLowerCase().includes(searchTerm.toLowerCase())
                 );
                 displayRooms(filteredRooms);
@@ -1412,7 +1671,7 @@
             statusDiv.textContent = message;
             statusDiv.className = `status ${type}`;
             statusDiv.style.display = 'block';
-            
+
             setTimeout(() => {
                 statusDiv.style.display = 'none';
             }, 4000);
@@ -1448,4 +1707,5 @@
         });
     </script>
 </body>
+
 </html>
