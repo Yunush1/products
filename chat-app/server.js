@@ -264,6 +264,15 @@ app.get('/api/me', requireAuth, async (req, res) => {
   }
 });
 
+app.get("/api/users", requireAuth, async (req, res) => {
+  try {
+    const users = await User.find().select('-password');
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+})
+
 // Create room
 app.post('/api/rooms', requireAuth, async (req, res) => {
   try {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp-Style Chat App</title>
+    <title>Chat App</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.js"></script>
     <style>
         * {
@@ -17,11 +17,6 @@
             height: 100vh;
             overflow: hidden;
             background: #f0f0f0;
-        }
-
-        .chat-app {
-            display: flex;
-            height: 100vh;
         }
 
         /* Auth Container */
@@ -201,12 +196,39 @@
             font-size: 14px;
         }
 
-        .rooms-list {
-            flex: 1;
-            overflow-y: auto;
+        .tabs-container {
+            display: flex;
+            background: #f0f2f5;
+            border-bottom: 1px solid #e1e5e9;
         }
 
-        .room-item {
+        .tab-btn {
+            flex: 1;
+            padding: 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: #667781;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            color: #25d366;
+            border-bottom: 2px solid #25d366;
+        }
+
+        .tab-content {
+            flex: 1;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .user-item, .room-item {
             padding: 15px 20px;
             border-bottom: 1px solid #f0f2f5;
             cursor: pointer;
@@ -216,7 +238,7 @@
             gap: 15px;
         }
 
-        .room-item:hover {
+        .user-item:hover, .room-item:hover {
             background: #f5f6f6;
         }
 
@@ -224,7 +246,7 @@
             background: #e7f3ff;
         }
 
-        .room-avatar {
+        .item-avatar {
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -235,14 +257,26 @@
             color: white;
             font-weight: bold;
             font-size: 18px;
+            position: relative;
         }
 
-        .room-info {
+        .online-indicator {
+            width: 12px;
+            height: 12px;
+            background: #25d366;
+            border-radius: 50%;
+            border: 2px solid white;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+        .item-info {
             flex: 1;
             min-width: 0;
         }
 
-        .room-name {
+        .item-name {
             font-weight: 600;
             font-size: 16px;
             margin-bottom: 2px;
@@ -251,7 +285,7 @@
             text-overflow: ellipsis;
         }
 
-        .room-last-message {
+        .item-status {
             color: #667781;
             font-size: 13px;
             white-space: nowrap;
@@ -259,7 +293,7 @@
             text-overflow: ellipsis;
         }
 
-        .room-time {
+        .item-time {
             color: #667781;
             font-size: 12px;
         }
@@ -304,7 +338,6 @@
             flex: 1;
             overflow-y: auto;
             padding: 20px;
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="chat-bg" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="2" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23chat-bg)"/></svg>');
         }
 
         .welcome-message {
@@ -351,10 +384,6 @@
             margin-bottom: 2px;
         }
 
-        .message.own .message-header {
-            color: #4a4a4a;
-        }
-
         .message-content {
             font-size: 14px;
             line-height: 1.4;
@@ -365,10 +394,6 @@
             font-size: 11px;
             color: #667781;
             text-align: right;
-        }
-
-        .message.own .message-time {
-            color: #4a4a4a;
         }
 
         .message-image {
@@ -405,7 +430,6 @@
             font-size: 13px;
         }
 
-        /* Input Area */
         .input-area {
             padding: 15px 20px;
             background: #f0f2f5;
@@ -454,11 +478,6 @@
 
         .send-btn:hover {
             background: #128c7e;
-        }
-
-        .send-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
         }
 
         .file-preview {
@@ -523,11 +542,6 @@
 
         .modal-header {
             margin-bottom: 20px;
-        }
-
-        .modal-header h3 {
-            color: #25d366;
-            margin-bottom: 10px;
         }
 
         .modal-actions {
@@ -603,7 +617,7 @@
     <!-- Authentication Container -->
     <div class="auth-container" id="authContainer">
         <div class="auth-box">
-            <h1>💬 WhatsApp Chat</h1>
+            <h1>💬 Chat App</h1>
             
             <div class="auth-tabs">
                 <button class="auth-tab active" onclick="showAuthForm('login')">Login</button>
@@ -654,17 +668,33 @@
                     </div>
                 </div>
                 <div class="header-actions">
-                    <button class="icon-btn" onclick="showCreateRoomModal()">➕ New</button>
+                    <button class="icon-btn" onclick="showCreateRoomModal()">➕ New Room</button>
                     <button class="icon-btn" onclick="logout()">🚪 Logout</button>
                 </div>
             </div>
             
             <div class="search-bar">
-                <input type="text" class="search-input" placeholder="Search or start new chat" onkeyup="filterRooms(this.value)">
+                <input type="text" class="search-input" placeholder="Search users or rooms" onkeyup="filterContent(this.value)">
+            </div>
+
+            <!-- Tabs for Users and Rooms -->
+            <div class="tabs-container">
+                <button class="tab-btn active" onclick="showTab('users')">All Users</button>
+                <button class="tab-btn" onclick="showTab('rooms')">My Rooms</button>
             </div>
             
-            <div class="rooms-list" id="roomsList">
-                <!-- Rooms will be loaded here -->
+            <!-- Users Tab -->
+            <div class="tab-content active" id="usersTab">
+                <div id="usersList">
+                    <!-- Users will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Rooms Tab -->
+            <div class="tab-content" id="roomsTab">
+                <div id="roomsList">
+                    <!-- Rooms will be loaded here -->
+                </div>
             </div>
         </div>
 
@@ -672,17 +702,17 @@
         <div class="chat-main">
             <div class="chat-header" id="chatHeader" style="display: none;">
                 <button class="back-btn" onclick="toggleSidebar()">←</button>
-                <div class="room-avatar" id="chatRoomAvatar">R</div>
+                <div class="item-avatar" id="chatRoomAvatar">R</div>
                 <div class="chat-room-info">
-                    <h3 id="chatRoomName">Select a chat</h3>
+                    <h3 id="chatRoomName">Select a room</h3>
                     <div class="chat-room-status" id="chatRoomStatus">Click on a room to start messaging</div>
                 </div>
             </div>
 
             <div class="messages-container" id="messagesContainer">
                 <div class="welcome-message">
-                    <h3>Welcome to WhatsApp Chat</h3>
-                    <p>Select a chat to start messaging or create a new room to begin.</p>
+                    <h3>Welcome to Chat App</h3>
+                    <p>Select a user to create a private room or join an existing room to start messaging.</p>
                 </div>
             </div>
 
@@ -709,12 +739,21 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Create New Room</h3>
-                <p>Enter a name for your new chat room</p>
+                <p>Enter details for your new chat room</p>
             </div>
             <form onsubmit="createRoom(event)">
                 <div class="form-group">
                     <label>Room Name</label>
                     <input type="text" id="roomNameInput" placeholder="Enter room name" required>
+                </div>
+                <div class="form-group">
+                    <label>Description (Optional)</label>
+                    <input type="text" id="roomDescInput" placeholder="Enter room description">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="isPrivateInput"> Private Room
+                    </label>
                 </div>
                 <div class="modal-actions">
                     <button type="button" class="btn-secondary" onclick="closeModal('createRoomModal')">Cancel</button>
@@ -731,10 +770,11 @@
         const API_URL = 'http://localhost:3001/api';
         let socket = null;
         let currentUser = null;
-        let currentRoom = null;
+        let currentRoomId = null;
         let selectedFile = null;
         let typingTimer = null;
-        let rooms = [];
+        let allUsers = [];
+        let userRooms = [];
 
         // Authentication Functions
         function showAuthForm(type) {
@@ -809,8 +849,9 @@
                 }
                 
                 currentUser = null;
-                currentRoom = null;
-                rooms = [];
+                currentRoomId = null;
+                allUsers = [];
+                userRooms = [];
                 showAuthInterface();
             } catch (error) {
                 console.error('Logout error:', error);
@@ -831,16 +872,14 @@
             document.getElementById('userAvatar').textContent = currentUser.username.charAt(0).toUpperCase();
             
             initSocket();
-            loadRooms();
+            loadAllUsers();
+            loadUserRooms();
         }
 
         // Socket Functions
         function initSocket() {
             socket = io('http://localhost:3001', {
-                withCredentials: true,
-                auth: {
-                    token: currentUser.token
-                }
+                withCredentials: true
             });
 
             socket.on('connect', () => {
@@ -849,22 +888,24 @@
             });
 
             socket.on('new_message', (message) => {
-                if (message.room === currentRoom) {
+                if (message.room === currentRoomId) {
                     displayMessage(message);
                 }
                 updateRoomLastMessage(message);
             });
 
             socket.on('user_typing', (data) => {
-                if (data.room === currentRoom && data.userId !== currentUser.id) {
+                if (data.userId !== currentUser.id) {
                     showTypingIndicator(`${data.username} is typing...`);
                 }
             });
 
             socket.on('user_stopped_typing', (data) => {
-                if (data.room === currentRoom) {
-                    hideTypingIndicator();
-                }
+                hideTypingIndicator();
+            });
+
+            socket.on('joined_room', (roomId) => {
+                console.log('Joined room:', roomId);
             });
 
             socket.on('error', (error) => {
@@ -876,16 +917,71 @@
             });
         }
 
+        // User Functions
+        async function loadAllUsers() {
+            try {
+                const response = await fetch(`${API_URL}/users`, {
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    allUsers = await response.json();
+                    // Filter out current user
+                    allUsers = allUsers.filter(user => user._id !== currentUser.id);
+                    displayUsers(allUsers);
+                } else {
+                    showStatus('Failed to load users', 'error');
+                }
+            } catch (error) {
+                showStatus('Failed to load users', 'error');
+            }
+        }
+
+        function displayUsers(usersToShow) {
+            const usersList = document.getElementById('usersList');
+            usersList.innerHTML = '';
+
+            if (usersToShow.length === 0) {
+                usersList.innerHTML = `
+                    <div style="padding: 40px 20px; text-align: center; color: #667781;">
+                        <p>No users found.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            usersToShow.forEach(user => {
+                const userElement = document.createElement('div');
+                userElement.className = 'user-item';
+                userElement.onclick = () => createPrivateRoomWithUser(user);
+                
+                const userInitial = user.username.charAt(0).toUpperCase();
+
+                userElement.innerHTML = `
+                    <div class="item-avatar">
+                        ${userInitial}
+                        ${user.isOnline ? '<div class="online-indicator"></div>' : ''}
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">${user.username}</div>
+                        <div class="item-status">${user.isOnline ? 'Online' : 'Last seen recently'}</div>
+                    </div>
+                `;
+
+                usersList.appendChild(userElement);
+            });
+        }
+
         // Room Functions
-        async function loadRooms() {
+        async function loadUserRooms() {
             try {
                 const response = await fetch(`${API_URL}/rooms`, {
                     credentials: 'include'
                 });
 
                 if (response.ok) {
-                    rooms = await response.json();
-                    displayRooms(rooms);
+                    userRooms = await response.json();
+                    displayRooms(userRooms);
                 } else {
                     showStatus('Failed to load rooms', 'error');
                 }
@@ -901,7 +997,7 @@
             if (roomsToShow.length === 0) {
                 roomsList.innerHTML = `
                     <div style="padding: 40px 20px; text-align: center; color: #667781;">
-                        <p>No rooms available.</p>
+                        <p>No rooms yet.</p>
                         <p>Create a new room to start chatting!</p>
                     </div>
                 `;
@@ -911,66 +1007,100 @@
             roomsToShow.forEach(room => {
                 const roomElement = document.createElement('div');
                 roomElement.className = 'room-item';
-                roomElement.onclick = () => selectRoom(room._id, room.name);
+                if (room._id === currentRoomId) {
+                    roomElement.classList.add('active');
+                }
+                roomElement.onclick = () => joinRoom(room);
                 
                 const roomInitial = room.name.charAt(0).toUpperCase();
-                const lastMessage = room.lastMessage || 'No messages yet';
-                const lastMessageTime = room.lastMessageTime ? 
-                    new Date(room.lastMessageTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
 
                 roomElement.innerHTML = `
-                    <div class="room-avatar">${roomInitial}</div>
-                    <div class="room-info">
-                        <div class="room-name">${room.name}</div>
-                        <div class="room-last-message">${lastMessage}</div>
+                    <div class="item-avatar">${roomInitial}</div>
+                    <div class="item-info">
+                        <div class="item-name">${room.name}</div>
+                        <div class="item-status">${room.participants.length} participants</div>
                     </div>
-                    <div class="room-time">${lastMessageTime}</div>
                 `;
 
                 roomsList.appendChild(roomElement);
             });
         }
 
-        function filterRooms(searchTerm) {
-            const filteredRooms = rooms.filter(room => 
-                room.name.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-            displayRooms(filteredRooms);
+        async function createPrivateRoomWithUser(user) {
+            try {
+                // Create a room name with both users
+                const roomName = `${currentUser.username} & ${user.username}`;
+                
+                const response = await fetch(`${API_URL}/rooms`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({ 
+                        name: roomName,
+                        description: `Private chat between ${currentUser.username} and ${user.username}`,
+                        isPrivate: true
+                    })
+                });
+
+                if (response.ok) {
+                    const newRoom = await response.json();
+                    
+                    // Add the other user to the room
+                    await fetch(`${API_URL}/rooms/${newRoom._id}/join`, {
+                        method: 'POST',
+                        credentials: 'include'
+                    });
+                    
+                    // Reload rooms and join the new room
+                    await loadUserRooms();
+                    joinRoom(newRoom);
+                    showTab('rooms');
+                    showStatus(`Started private chat with ${user.username}`, 'success');
+                } else {
+                    const data = await response.json();
+                    showStatus(data.error, 'error');
+                }
+            } catch (error) {
+                showStatus('Failed to create private room', 'error');
+            }
         }
 
-        async function selectRoom(roomId, roomName) {
-            currentRoom = roomId;
-            
-            // Update UI
-            document.querySelectorAll('.room-item').forEach(item => item.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            
-            // Update chat header
-            document.getElementById('chatHeader').style.display = 'flex';
-            document.getElementById('chatRoomName').textContent = roomName;
-            document.getElementById('chatRoomAvatar').textContent = roomName.charAt(0).toUpperCase();
-            document.getElementById('chatRoomStatus').textContent = 'Online';
-            document.getElementById('inputArea').style.display = 'flex';
-            
-            // Clear welcome message
-            const messagesContainer = document.getElementById('messagesContainer');
-            messagesContainer.innerHTML = '';
-            
-            // Join room via socket
-            if (socket) {
-                socket.emit('join_room', roomId);
-            }
-            
-            // Load messages
-            await loadMessages(roomId);
-            
-            // Hide sidebar on mobile
-            if (window.innerWidth <= 768) {
-                document.getElementById('sidebar').classList.remove('show');
+        async function joinRoom(room) {
+            try {
+                currentRoomId = room._id;
+                
+                // Update UI
+                document.querySelectorAll('.room-item').forEach(item => item.classList.remove('active'));
+                event.currentTarget.classList.add('active');
+                
+                document.getElementById('chatHeader').style.display = 'flex';
+                document.getElementById('chatRoomName').textContent = room.name;
+                document.getElementById('chatRoomAvatar').textContent = room.name.charAt(0).toUpperCase();
+                document.getElementById('chatRoomStatus').textContent = `${room.participants.length} participants`;
+                document.getElementById('inputArea').style.display = 'flex';
+                
+                // Clear messages container
+                const messagesContainer = document.getElementById('messagesContainer');
+                messagesContainer.innerHTML = '';
+                
+                // Join room via socket
+                if (socket) {
+                    socket.emit('join_room', currentRoomId);
+                }
+                
+                // Load messages
+                await loadRoomMessages(currentRoomId);
+                
+                // Hide sidebar on mobile
+                if (window.innerWidth <= 768) {
+                    document.getElementById('sidebar').classList.remove('show');
+                }
+            } catch (error) {
+                showStatus('Failed to join room', 'error');
             }
         }
 
-        async function loadMessages(roomId) {
+        async function loadRoomMessages(roomId) {
             try {
                 const response = await fetch(`${API_URL}/rooms/${roomId}/messages`, {
                     credentials: 'include'
@@ -985,7 +1115,6 @@
                         displayMessage(message);
                     });
 
-                    // Scroll to bottom
                     scrollToBottom();
                 } else {
                     showStatus('Failed to load messages', 'error');
@@ -1003,6 +1132,8 @@
         async function createRoom(event) {
             event.preventDefault();
             const name = document.getElementById('roomNameInput').value.trim();
+            const description = document.getElementById('roomDescInput').value.trim();
+            const isPrivate = document.getElementById('isPrivateInput').checked;
             
             if (!name) return;
 
@@ -1011,17 +1142,20 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     credentials: 'include',
-                    body: JSON.stringify({ name })
+                    body: JSON.stringify({ name, description, isPrivate })
                 });
 
                 if (response.ok) {
                     const newRoom = await response.json();
                     closeModal('createRoomModal');
                     document.getElementById('roomNameInput').value = '';
-                    await loadRooms();
+                    document.getElementById('roomDescInput').value = '';
+                    document.getElementById('isPrivateInput').checked = false;
+                    
+                    await loadUserRooms();
                     showStatus('Room created successfully!', 'success');
                     
-                    // Auto-select the new room
+                    // Auto-join the new room
                     setTimeout(() => {
                         const roomElements = document.querySelectorAll('.room-item');
                         const newRoomElement = Array.from(roomElements).find(el => 
@@ -1095,17 +1229,16 @@
             const content = messageInput.value.trim();
 
             if (!content && !selectedFile) return;
-            if (!currentRoom) {
+            if (!currentRoomId) {
                 showStatus('Please select a room first', 'error');
                 return;
             }
 
-            // Disable send button temporarily
             const sendBtn = document.getElementById('sendBtn');
             sendBtn.disabled = true;
 
             let messageData = {
-                roomId: currentRoom,
+                roomId: currentRoomId,
                 content: content
             };
 
@@ -1156,7 +1289,6 @@
         function handleFileSelect(event) {
             const file = event.target.files[0];
             if (file) {
-                // Check file size (max 10MB)
                 if (file.size > 10 * 1024 * 1024) {
                     showStatus('File size must be less than 10MB', 'error');
                     return;
@@ -1211,17 +1343,49 @@
         }
 
         function handleTyping() {
-            if (currentRoom && socket) {
-                socket.emit('typing_start', { room: currentRoom, username: currentUser.username });
+            if (currentRoomId && socket) {
+                socket.emit('typing_start', currentRoomId);
                 
                 clearTimeout(typingTimer);
                 typingTimer = setTimeout(() => {
-                    socket.emit('typing_stop', { room: currentRoom });
+                    socket.emit('typing_stop', currentRoomId);
                 }, 1000);
             }
         }
 
         // UI Helper Functions
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(tabName + 'Tab').classList.add('active');
+        }
+
+        function filterContent(searchTerm) {
+            const activeTab = document.querySelector('.tab-btn.active').textContent;
+            
+            if (activeTab === 'All Users') {
+                const filteredUsers = allUsers.filter(user => 
+                    user.username.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+                displayUsers(filteredUsers);
+            } else {
+                const filteredRooms = userRooms.filter(room => 
+                    room.name.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+                displayRooms(filteredRooms);
+            }
+        }
+
+        function updateRoomLastMessage(message) {
+            // This would update the room list with the latest message
+            // For now, we'll just reload the rooms
+            if (message.room !== currentRoomId) {
+                loadUserRooms();
+            }
+        }
+
         function showTypingIndicator(text) {
             document.getElementById('typingIndicator').textContent = text;
         }
@@ -1254,15 +1418,6 @@
             }, 4000);
         }
 
-        function updateRoomLastMessage(message) {
-            const room = rooms.find(r => r._id === message.room);
-            if (room) {
-                room.lastMessage = message.content || (message.messageType === 'image' ? '📷 Image' : '📄 File');
-                room.lastMessageTime = message.createdAt;
-                displayRooms(rooms);
-            }
-        }
-
         // Initialize App
         window.addEventListener('load', async () => {
             try {
@@ -1278,7 +1433,7 @@
             }
         });
 
-        // Handle window resize for responsive design
+        // Handle window resize
         window.addEventListener('resize', () => {
             if (window.innerWidth > 768) {
                 document.getElementById('sidebar').classList.remove('show');
